@@ -1,0 +1,20 @@
+services:
+  scoreboard_backend:
+    build: ./src
+    ports:
+      - "6002:6002"
+    volumes:
+      - bubble_fang_scoreboard:/usr/src/scoreboard_backend
+    environment:
+      - RUST_LOG=info
+    networks:
+      - main
+
+
+volumes:
+  bubble_fang_scoreboard: 
+    external: true 
+
+networks:
+  main:
+    external: true 
