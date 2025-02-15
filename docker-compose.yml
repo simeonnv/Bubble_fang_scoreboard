@@ -5,8 +5,20 @@ services:
       - "6002:6002"
     volumes:
       - bubble_fang_scoreboard:/usr/src/scoreboard_backend
+    depends_on:
+      - scoreboard_database
     environment:
       - RUST_LOG=info
+    networks:
+      - main
+
+  scoreboard_database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DATABASE=my_database
+    volumes:
+      - bubble_fang_scoreboard:/var/lib/postgres
     networks:
       - main
 
